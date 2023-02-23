@@ -1,10 +1,6 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  annotations:
-    kompose.cmd: kompose convert -f ../docker-compose.yml
-    kompose.version: 1.28.0 (c4137012e)
-  creationTimestamp: null
   labels:
     io.kompose.service: pgadmin
   name: pgadmin
@@ -13,22 +9,15 @@ spec:
   selector:
     matchLabels:
       io.kompose.service: pgadmin
-  strategy:
-    type: Recreate
   template:
     metadata:
-      annotations:
-        kompose.cmd: kompose convert -f ../docker-compose.yml
-        kompose.version: 1.28.0 (c4137012e)
-      creationTimestamp: null
       labels:
-        io.kompose.network/nodejs-tp-default: "true"
         io.kompose.service: pgadmin
     spec:
       containers:
         - env:
             - name: PGADMIN_DEFAULT_EMAIL
-              value: admin
+              value: admin@admin.com
             - name: PGADMIN_DEFAULT_PASSWORD
               value: admin
           image: dpage/pgadmin4

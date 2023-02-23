@@ -14,7 +14,6 @@ data:
   REFRESH_TOKEN_SECRET: jwt_secret_refresh
 kind: ConfigMap
 metadata:
-  creationTimestamp: null
   labels:
     io.kompose.service: app-env
   name: env
