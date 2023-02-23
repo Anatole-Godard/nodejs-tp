@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    io.kompose.service: db
+  name: db
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: db
+  template:
+    metadata:
+      labels:
+        io.kompose.service: db
+    spec:
+      containers:
+        - env:
+            - name: POSTGRES_DB
+              valueFrom:
+                configMapKeyRef:
+                  name: db-config
+                  key: DB_DATABASE
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: db-secret
+                  key: DB_PASSWORD
+            - name: POSTGRES_USER
+              valueFrom:
+                secretKeyRef:
+                  name: db-secret
+                  key: DB_USERNAME
+          image: postgres:14.1-alpine
+          name: db
+          ports:
+            - containerPort: 5432
+          resources: { }
+          volumeMounts:
+            - mountPath: /data/postgresql/data
+              name: db-claim0
+      restartPolicy: Always
+      volumes:
+        - name: db-claim0
+          hostPath:
+            path: /data/postgresql/data
+            type: DirectoryOrCreate
+status: { }

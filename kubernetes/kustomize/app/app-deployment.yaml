@@ -24,8 +24,8 @@ spec:
                   key: ACCESS_TOKEN_EXPIRY
             - name: ACCESS_TOKEN_SECRET
               valueFrom:
-                secretKeyRef:
-                  name: app-secret
+                configMapKeyRef:
+                  name: app-config
                   key: ACCESS_TOKEN_SECRET
             - name: DB_DAILECT
               valueFrom:
@@ -74,8 +74,8 @@ spec:
                   key: REFRESH_TOKEN_EXPIRY
             - name: REFRESH_TOKEN_SECRET
               valueFrom:
-                secretKeyRef:
-                  name: app-secret
+                configMapKeyRef:
+                  name: app-config
                   key: REFRESH_TOKEN_SECRET
           image: 4natole/tp-node:1.0
           name: app
