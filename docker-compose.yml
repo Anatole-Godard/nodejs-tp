@@ -1,0 +1,33 @@
+version: '3.8'
+services:
+  app:
+    build: .
+    image: 4natole/tp-node:1.0
+    env_file:
+      - .env
+    ports:
+      - "8080:8080"
+    networks:
+      - tp_node_network
+    volumes:
+      - /usr/src/app/node_modules
+
+  db:
+    image: postgres:14.1-alpine
+    restart: always
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=sa
+      - POSTGRES_PASSWORD=password
+    ports:
+      - "5432:5432"
+    networks:
+      - tp_node_network
+    volumes:
+      - postgresql:/var/lib/postgresql/data
+
+volumes:
+  postgresql:
+
+networks:
+  tp_node_network:
