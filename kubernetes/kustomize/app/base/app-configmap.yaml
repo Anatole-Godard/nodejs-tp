@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: app-config
+data:
+  ACCESS_TOKEN_EXPIRY: ""
+  DB_DAILECT: ""
+  DB_DATABASE: ""
+  DB_HOST: ""
+  DB_PASSWORD: ""
+  DB_PORT: ""
+  DB_USERNAME: ""
+  PORT: ""
+  REFRESH_TOKEN_COOKIE_NAME: ""
+  REFRESH_TOKEN_EXPIRY: ""

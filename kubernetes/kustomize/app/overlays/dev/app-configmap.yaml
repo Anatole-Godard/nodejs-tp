@@ -4,7 +4,6 @@ metadata:
   name: app-config
 data:
   ACCESS_TOKEN_EXPIRY: 15m
-  ACCESS_TOKEN_SECRET: jwt_secret
   DB_DAILECT: postgres
   DB_DATABASE: postgres
   DB_HOST: db
@@ -14,4 +13,3 @@ data:
   PORT: "8080"
   REFRESH_TOKEN_COOKIE_NAME: jid
   REFRESH_TOKEN_EXPIRY: 7d
-  REFRESH_TOKEN_SECRET: jwt_secret_refresh

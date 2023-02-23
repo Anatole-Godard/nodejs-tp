@@ -87,8 +87,4 @@ spec:
             requests:
               cpu: 200m
       restartPolicy: Always
-      volumes:
-        - name: app-claim0
-          persistentVolumeClaim:
-            claimName: app-claim0
 status: { }

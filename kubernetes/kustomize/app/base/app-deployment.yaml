@@ -24,8 +24,8 @@ spec:
                   key: ACCESS_TOKEN_EXPIRY
             - name: ACCESS_TOKEN_SECRET
               valueFrom:
-                configMapKeyRef:
-                  name: app-config
+                secretKeyRef:
+                  name: app-secret
                   key: ACCESS_TOKEN_SECRET
             - name: DB_DAILECT
               valueFrom:
@@ -74,8 +74,8 @@ spec:
                   key: REFRESH_TOKEN_EXPIRY
             - name: REFRESH_TOKEN_SECRET
               valueFrom:
-                configMapKeyRef:
-                  name: app-config
+                secretKeyRef:
+                  name: app-secret
                   key: REFRESH_TOKEN_SECRET
           image: 4natole/tp-node:1.0
           name: app
@@ -87,8 +87,4 @@ spec:
             requests:
               cpu: 200m
       restartPolicy: Always
-      volumes:
-        - name: app-claim0
-          persistentVolumeClaim:
-            claimName: app-claim0
 status: { }

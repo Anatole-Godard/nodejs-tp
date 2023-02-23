@@ -10,3 +10,6 @@ spec:
   minReplicas: 1
   maxReplicas: 10
   targetCPUUtilizationPercentage: 50
+
+# Execute cette commande pour tester le HPA :
+# kubectl run -i --tty load-generator --rm --image=busybox:1.28 --restart=Never -n tp -- /bin/sh -c "while sleep 0.01; do wget -q -O- http://app:8080/api/users?query=anatole%40anatole.com; done"
