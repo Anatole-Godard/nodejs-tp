@@ -43,6 +43,6 @@ spec:
       volumes:
         - name: db-claim0
           hostPath:
-            path: ""
+            path: /data/postgresql/data
             type: DirectoryOrCreate
 status: { }

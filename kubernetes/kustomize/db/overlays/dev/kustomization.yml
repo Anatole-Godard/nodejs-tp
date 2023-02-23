@@ -5,3 +5,4 @@ bases:
 patchesStrategicMerge:
   - db-configmap.yaml
   - db-secret.yaml
+  - db-deployment.yaml
