@@ -1,0 +1,103 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert -f ../docker-compose.yml
+    kompose.version: 1.28.0 (c4137012e)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: app
+  name: app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: app
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose convert -f ../docker-compose.yml
+        kompose.version: 1.28.0 (c4137012e)
+      creationTimestamp: null
+      labels:
+        io.kompose.network/nodejs-tp-tp-node-network: "true"
+        io.kompose.service: app
+    spec:
+      containers:
+        - env:
+            - name: ACCESS_TOKEN_EXPIRY
+              valueFrom:
+                configMapKeyRef:
+                  key: ACCESS_TOKEN_EXPIRY
+                  name: env
+            - name: ACCESS_TOKEN_SECRET
+              valueFrom:
+                configMapKeyRef:
+                  key: ACCESS_TOKEN_SECRET
+                  name: env
+            - name: DB_DAILECT
+              valueFrom:
+                configMapKeyRef:
+                  key: DB_DAILECT
+                  name: env
+            - name: DB_DATABASE
+              valueFrom:
+                configMapKeyRef:
+                  key: DB_DATABASE
+                  name: env
+            - name: DB_HOST
+              valueFrom:
+                configMapKeyRef:
+                  key: DB_HOST
+                  name: env
+            - name: DB_PASSWORD
+              valueFrom:
+                configMapKeyRef:
+                  key: DB_PASSWORD
+                  name: env
+            - name: DB_PORT
+              valueFrom:
+                configMapKeyRef:
+                  key: DB_PORT
+                  name: env
+            - name: DB_USERNAME
+              valueFrom:
+                configMapKeyRef:
+                  key: DB_USERNAME
+                  name: env
+            - name: PORT
+              valueFrom:
+                configMapKeyRef:
+                  key: PORT
+                  name: env
+            - name: REFRESH_TOKEN_COOKIE_NAME
+              valueFrom:
+                configMapKeyRef:
+                  key: REFRESH_TOKEN_COOKIE_NAME
+                  name: env
+            - name: REFRESH_TOKEN_EXPIRY
+              valueFrom:
+                configMapKeyRef:
+                  key: REFRESH_TOKEN_EXPIRY
+                  name: env
+            - name: REFRESH_TOKEN_SECRET
+              valueFrom:
+                configMapKeyRef:
+                  key: REFRESH_TOKEN_SECRET
+                  name: env
+          image: 4natole/tp-node:1.0
+          name: app
+          ports:
+            - containerPort: 8080
+          resources: {}
+          volumeMounts:
+            - mountPath: /usr/src/app/node_modules
+              name: app-claim0
+      restartPolicy: Always
+      volumes:
+        - name: app-claim0
+          persistentVolumeClaim:
+            claimName: app-claim0
+status: {}

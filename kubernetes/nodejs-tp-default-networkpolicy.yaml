@@ -1,0 +1,14 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  creationTimestamp: null
+  name: nodejs-tp-default
+spec:
+  ingress:
+    - from:
+        - podSelector:
+            matchLabels:
+              io.kompose.network/nodejs-tp-default: "true"
+  podSelector:
+    matchLabels:
+      io.kompose.network/nodejs-tp-default: "true"

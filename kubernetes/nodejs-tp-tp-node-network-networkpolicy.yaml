@@ -1,0 +1,14 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  creationTimestamp: null
+  name: nodejs-tp-tp-node-network
+spec:
+  ingress:
+    - from:
+        - podSelector:
+            matchLabels:
+              io.kompose.network/nodejs-tp-tp-node-network: "true"
+  podSelector:
+    matchLabels:
+      io.kompose.network/nodejs-tp-tp-node-network: "true"

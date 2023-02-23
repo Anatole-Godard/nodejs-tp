@@ -26,8 +26,22 @@ services:
     volumes:
       - postgresql:/var/lib/postgresql/data
 
+  pgadmin:
+    container_name: pgadmin_container
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin
+      PGADMIN_DEFAULT_PASSWORD: admin
+    ports:
+      - "1234:80"
+    depends_on:
+      - db
+    volumes:
+      - pgadmin:/var/lib/pgadmin
+
 volumes:
   postgresql:
+  pgadmin:
 
 networks:
   tp_node_network:
