@@ -20,63 +20,63 @@ spec:
             - name: ACCESS_TOKEN_EXPIRY
               valueFrom:
                 configMapKeyRef:
+                  name: app-config
                   key: ACCESS_TOKEN_EXPIRY
-                  name: env
             - name: ACCESS_TOKEN_SECRET
               valueFrom:
                 configMapKeyRef:
+                  name: app-config
                   key: ACCESS_TOKEN_SECRET
-                  name: env
             - name: DB_DAILECT
               valueFrom:
                 configMapKeyRef:
+                  name: app-config
                   key: DB_DAILECT
-                  name: env
             - name: DB_DATABASE
               valueFrom:
                 configMapKeyRef:
+                  name: app-config
                   key: DB_DATABASE
-                  name: env
             - name: DB_HOST
               valueFrom:
                 configMapKeyRef:
+                  name: app-config
                   key: DB_HOST
-                  name: env
             - name: DB_PASSWORD
               valueFrom:
-                configMapKeyRef:
+                secretKeyRef:
+                  name: app-secret
                   key: DB_PASSWORD
-                  name: env
             - name: DB_PORT
               valueFrom:
                 configMapKeyRef:
+                  name: app-config
                   key: DB_PORT
-                  name: env
             - name: DB_USERNAME
               valueFrom:
-                configMapKeyRef:
+                secretKeyRef:
+                  name: app-secret
                   key: DB_USERNAME
-                  name: env
             - name: PORT
               valueFrom:
                 configMapKeyRef:
+                  name: app-config
                   key: PORT
-                  name: env
             - name: REFRESH_TOKEN_COOKIE_NAME
               valueFrom:
                 configMapKeyRef:
+                  name: app-config
                   key: REFRESH_TOKEN_COOKIE_NAME
-                  name: env
             - name: REFRESH_TOKEN_EXPIRY
               valueFrom:
                 configMapKeyRef:
+                  name: app-config
                   key: REFRESH_TOKEN_EXPIRY
-                  name: env
             - name: REFRESH_TOKEN_SECRET
               valueFrom:
                 configMapKeyRef:
+                  name: app-config
                   key: REFRESH_TOKEN_SECRET
-                  name: env
           image: 4natole/tp-node:1.0
           name: app
           ports:

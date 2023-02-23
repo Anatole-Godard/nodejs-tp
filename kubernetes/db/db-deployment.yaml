@@ -17,11 +17,20 @@ spec:
       containers:
         - env:
             - name: POSTGRES_DB
-              value: postgres
+              valueFrom:
+                configMapKeyRef:
+                  name: db-config
+                  key: DB_DATABASE
             - name: POSTGRES_PASSWORD
-              value: password
+              valueFrom:
+                secretKeyRef:
+                  name: db-secret
+                  key: DB_PASSWORD
             - name: POSTGRES_USER
-              value: sa
+              valueFrom:
+                secretKeyRef:
+                  name: db-secret
+                  key: DB_USERNAME
           image: postgres:14.1-alpine
           name: db
           ports:
