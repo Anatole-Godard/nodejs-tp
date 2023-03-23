@@ -74,7 +74,7 @@ resource "azurerm_linux_web_app" "webapp" {
   }
 
   app_settings = {
-    "PORT"                    = var.database_port,
+    "PORT"                    = var.api_port,
     "DB_HOST"                 = azurerm_postgresql_server.sqlsvr.fqdn,
     "DB_DATABASE"             = azurerm_postgresql_database.database.name,
     "DB_USERNAME"             = "${data.azurerm_key_vault_secret.database-login.value}@${azurerm_postgresql_server.sqlsvr.name}"
