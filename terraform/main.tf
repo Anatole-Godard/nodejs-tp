@@ -36,8 +36,8 @@ resource "azurerm_postgresql_server" "sqlsvr" {
 
 resource "azurerm_postgresql_firewall_rule" "sql-srv" {
   name                = "fw-${var.project_name}${var.environment_suffix}"
-  start_ip_address    = "40.112.8.12"
-  end_ip_address      = "40.112.8.12"
+  start_ip_address    = "0.0.0.0"
+  end_ip_address      = "0.0.0.0"
   resource_group_name = data.azurerm_resource_group.rg.name
   server_name         = azurerm_postgresql_server.sqlsvr.name
 }
@@ -103,7 +103,7 @@ resource "azurerm_container_group" "pgadmin" {
     name   = "pgadmin"
 
     ports {
-      port     = 1234
+      port     = 80
       protocol = "TCP"
     }
 
